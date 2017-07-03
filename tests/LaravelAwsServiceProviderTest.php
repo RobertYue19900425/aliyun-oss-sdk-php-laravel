@@ -1,4 +1,4 @@
-<?php namespace Aws\Laravel\Test;
+<?php namespace AliyunOss\Laravel\Test;
 
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;

@@ -1,10 +1,10 @@
-<?php namespace Aws\Laravel\Test;
+<?php namespace AliyunOss\Laravel\Test;
 
-use Aws\Laravel\AwsFacade as AWS;
-use Aws\Laravel\AwsServiceProvider;
+use AliyunOss\Laravel\AliyunOssFacade as AliyunOss;
+use AliyunOss\Laravel\AliyunOssServiceProvider;
 use Illuminate\Container\Container;
 
-abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
+abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testFacadeCanBeResolvedToServiceInstance()
@@ -13,11 +13,11 @@ abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->setupServiceProvider($app);
 
         // Mount facades
-        AWS::setFacadeApplication($app);
+        AliyuOss::setFacadeApplication($app);
 
-        // Get an instance of a client (S3) via the facade.
-        $s3 = AWS::createClient('S3');
-        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
+        // Get an instance of a oss client via the facade.
+        $s3 = AliyunOss::OssClient();
+        $this->assertInstanceOf('Oss\OssClient', $s3);
     }
 
     public function testRegisterAwsServiceProviderWithPackageConfigAndEnv()
@@ -25,14 +25,13 @@ abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app = $this->setupApplication();
         $this->setupServiceProvider($app);
 
-        // Get an instance of a client (S3).
-        /** @var $s3 \Aws\S3\S3Client */
-        $s3 = $app['aws']->createClient('S3');
-        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
+        // Get an instance of a oss client.
+        /** @var $oss \Oss\OssClient */
+        $oss = $app['aliyun-oss']->OssClient();
+        $this->assertInstanceOf('Oss\OssClient', $oss);
 
         // Verify that the client received the credentials from the package config.
-        /** @var \Aws\Credentials\CredentialsInterface $credentials */
-        $credentials = $s3->getCredentials()->wait();
+        $credentials = $oss->getOssClient();
         $this->assertEquals('foo', $credentials->getAccessKeyId());
         $this->assertEquals('bar', $credentials->getSecretKey());
         $this->assertEquals('baz', $s3->getRegion());
@@ -42,14 +41,14 @@ abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $app = $this->setupApplication();
         $provider = $this->setupServiceProvider($app);
-        $this->assertContains('aws', $provider->provides());
+        $this->assertContains('aliyun-oss', $provider->provides());
     }
 
     public function testVersionInformationIsProvidedToSdkUserAgent()
     {
         $app = $this->setupApplication();
         $this->setupServiceProvider($app);
-        $config = $app['config']->get('aws');
+        $config = $app['config']->get('aliyun-oss');
 
         $this->assertArrayHasKey('ua_append', $config);
         $this->assertInternalType('array', $config['ua_append']);
