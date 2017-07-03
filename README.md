@@ -1,1 +1,2 @@
-# aliyun-oss-sdk-php-laravel
+# Aliyun Oss Service Provider for Laravel 5
+
