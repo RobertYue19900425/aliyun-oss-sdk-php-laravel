@@ -1,6 +1,6 @@
 {
     "name": "aliyun-oss/aliyun-oss-php-sdk-laravel",
-    "homepage": "http://aws.amazon.com/sdkforphp2",
+    "homepage": "https://github.com/aliyun",
     "description": "A simple Laravel 5 service provider for including the AWS SDK for PHP.",
     "keywords": ["laravel", "laravel 5", "aliyun", "alicloud", "sdk", "oss"],
     "type":"library",
