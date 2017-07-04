@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "aliyuncs/oss-sdk-php": "~3.0",
+        "aliyuncs/oss-sdk-php": "~2.2.1",
         "illuminate/support": "~5.1"
     },
     "require-dev": {
