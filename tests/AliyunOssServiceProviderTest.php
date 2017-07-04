@@ -6,8 +6,7 @@ use Illuminate\Container\Container;
 
 abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
-
-    public function testFacadeCanBeResolvedToServiceInstance()
+/*    public function testFacadeCanBeResolvedToServiceInstance()
     {
         $app = $this->setupApplication();
         $this->setupServiceProvider($app);
@@ -16,27 +15,28 @@ abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
         AliyunOss::setFacadeApplication($app);
 
         // Get an instance of a oss client via the facade.
-        $oss = AliyunOss::OssClient();
-        $this->assertInstanceOf('Oss\OssClient', $oss);
-    }
 
-    public function testRegisterAliyunsOssServiceProviderWithPackageConfigAndEnv()
-    {
-        $app = $this->setupApplication();
-        $this->setupServiceProvider($app);
+        $client = AliyunOss::listBuckets();
+        $this->assertInstanceOf('OSS\OssClient', $client);
+    }
+*/
+//    public function testRegisterAliyunsOssServiceProviderWithPackageConfigAndEnv()
+//    {
+//        $app = $this->setupApplication();
+//        $this->setupServiceProvider($app);
 
         // Get an instance of a oss client.
         /** @var $oss \Oss\OssClient */
-        $oss = $app['aliyun-oss']->OssClient();
-        $this->assertInstanceOf('Oss\OssClient', $oss);
+//        $oss = $app['aliyun-oss']->listBuckets();
+ //       $this->assertInstanceOf('OSS\OssClient', $oss);
 
         // Verify that the client received the credentials from the package config.
-        $credentials = $oss->getOssClient();
+/*        $credentials = $oss->getOssClient();
         $this->assertEquals('foo', $credentials->getAccessKeyId());
         $this->assertEquals('bar', $credentials->getSecretKey());
-        $this->assertEquals('baz', $s3->getRegion());
+        $this->assertEquals('baz', $oss->getRegion());
     }
-
+*/
     public function testServiceNameIsProvided()
     {
         $app = $this->setupApplication();
@@ -50,12 +50,10 @@ abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->setupServiceProvider($app);
         $config = $app['config']->get('aliyun-oss');
 
-        $this->assertArrayHasKey('ua_append', $config);
-        $this->assertInternalType('array', $config['ua_append']);
-        $this->assertNotEmpty($config['ua_append']);
-        $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
-            return false !== strpos($ua, AliyunOssServiceProvider::VERSION);
-        }));
+        $this->assertEquals('oss', $config['id']);
+        $this->assertEquals('xxx', $config['key']);
+        $this->assertEquals('oss-hangzhou', $config['endpoint']);
+        $this->assertEquals('oss-bucket', $config['bucket']);
     }
 
     /**

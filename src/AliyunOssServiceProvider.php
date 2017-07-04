@@ -1,6 +1,6 @@
 <?php namespace AliyunOss\Laravel;
 
-use Oss\OssClient;
+use OSS\OssClient;
 use OSS\Core\OssException;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
@@ -11,8 +11,6 @@ use Laravel\Lumen\Application as LumenApplication;
  */
 class AliyunOssServiceProvider extends ServiceProvider
 {
-    const VERSION = '3.1.0';
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -46,10 +44,10 @@ class AliyunOssServiceProvider extends ServiceProvider
         $this->app->singleton('aliyun-oss', function ($app) {
             $config = $app->make('config')->get('aliyun-oss');
 
-            return new OssClient($config);
+            return new OssClient('1', '2', '3');
         });
 
-        $this->app->alias('aliyun-oss', 'Oss\OssClient');
+        $this->app->alias('aliyun-oss', 'OSS\OssClient');
     }
 
     /**
@@ -59,7 +57,7 @@ class AliyunOssServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['aliyun-oss', 'Oss\OssClient'];
+        return ['aliyun-oss', 'OSS\OssClient'];
     }
 
 }

@@ -7,10 +7,10 @@ class LaravelAliyunOssServiceProviderTest extends AliyunOssServiceProviderTest
 {
     public function setUp()
     {
-/*        if (!class_exists(Application::class)) {
+        if (!class_exists(Application::class)) {
             $this->markTestSkipped();
         }
-*/
+
         parent::setUp();
     }
 

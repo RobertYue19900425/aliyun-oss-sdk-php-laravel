@@ -7,7 +7,10 @@ php:
 
 sudo: false
 
-install: travis_retry composer install --no-interaction
-
-script: make test
-
+install:
+  - composer self-update
+  - composer install --no-interaction
+script:
+  - php vendor/bin/phpunit
+after_success:
+  - php vendor/bin/coveralls -v
