@@ -26,7 +26,7 @@
     </php>
 
     <filter>
-        <whitelisti>
+        <whitelist>
             <directory>./src/</directory>
         </whitelist>
     </filter>
