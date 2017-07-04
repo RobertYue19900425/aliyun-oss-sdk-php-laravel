@@ -13,14 +13,14 @@ abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->setupServiceProvider($app);
 
         // Mount facades
-        AliyuOss::setFacadeApplication($app);
+        AliyunOss::setFacadeApplication($app);
 
         // Get an instance of a oss client via the facade.
-        $s3 = AliyunOss::OssClient();
-        $this->assertInstanceOf('Oss\OssClient', $s3);
+        $oss = AliyunOss::OssClient();
+        $this->assertInstanceOf('Oss\OssClient', $oss);
     }
 
-    public function testRegisterAwsServiceProviderWithPackageConfigAndEnv()
+    public function testRegisterAliyunsOssServiceProviderWithPackageConfigAndEnv()
     {
         $app = $this->setupApplication();
         $this->setupServiceProvider($app);
@@ -54,7 +54,7 @@ abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $config['ua_append']);
         $this->assertNotEmpty($config['ua_append']);
         $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
-            return false !== strpos($ua, AwsServiceProvider::VERSION);
+            return false !== strpos($ua, AliyunOssServiceProvider::VERSION);
         }));
     }
 
@@ -66,12 +66,12 @@ abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
     /**
      * @param Container $app
      *
-     * @return AwsServiceProvider
+     * @return AliyusOssServiceProvider
      */
     private function setupServiceProvider(Container $app)
     {
         // Create and register the provider.
-        $provider = new AwsServiceProvider($app);
+        $provider = new AliyunOssServiceProvider($app);
         $app->register($provider);
         $provider->boot();
 

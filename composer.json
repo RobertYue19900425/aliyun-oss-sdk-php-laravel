@@ -1,32 +1,26 @@
 {
     "name": "aliyun-oss/aliyun-oss-php-sdk-laravel",
     "homepage": "https://github.com/aliyun",
-    "description": "A simple Laravel 5 service provider for including the AWS SDK for PHP.",
+    "description": "A simple Laravel 5 service provider for including the Oss PHP SDK for PHP.",
     "keywords": ["laravel", "laravel 5", "aliyun", "alicloud", "sdk", "oss"],
     "type":"library",
     "license":"MIT",
     "authors":[
         {
-            "name":"alibaba cloud",
+            "name":"RobertYue19900425",
             "homepage":"http://aliyun.com"
         }
     ],
     "require": {
         "php": ">=5.5.9",
         "aliyuncs/oss-sdk-php": "~2.2.1",
-        "illuminate/support": "~5.1"
+        "illuminate/support": "~5.1",
+	"laravel/framework": "~5.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0|~5.0"
     },
-    "suggest": {
-        "laravel/framework": "To test the Laravel bindings",
-        "laravel/lumen-framework": "To test the Lumen bindings"
-    },
     "autoload": {
         "psr-4": { "AliyunOss\\Laravel\\": "src/" }
-    },
-    "autoload-dev": {
-        "psr-4": { "AliyunOss\\Laravel\\Test\\": "tests/" }
     }
 }

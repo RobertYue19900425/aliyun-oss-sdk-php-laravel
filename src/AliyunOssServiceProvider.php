@@ -1,6 +1,7 @@
 <?php namespace AliyunOss\Laravel;
 
 use Oss\OssClient;
+use OSS\Core\OssException;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
@@ -32,7 +33,7 @@ class AliyunOssServiceProvider extends ServiceProvider
             $this->publishes([$source => config_path('config.php')]);
         }
  
-        $this->mergeConfigFrom($source, 'aws');
+        $this->mergeConfigFrom($source, 'aliyun-oss');
     }
 
     /**
@@ -42,10 +43,10 @@ class AliyunOssServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('aws', function ($app) {
-            $config = $app->make('config')->get('aws');
+        $this->app->singleton('aliyun-oss', function ($app) {
+            $config = $app->make('config')->get('aliyun-oss');
 
-            return new Sdk($config);
+            return new OssClient($config);
         });
 
         $this->app->alias('aliyun-oss', 'Oss\OssClient');
