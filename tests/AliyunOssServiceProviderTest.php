@@ -6,20 +6,6 @@ use Illuminate\Container\Container;
 
 abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
-/*    public function testFacadeCanBeResolvedToServiceInstance()
-    {
-        $app = $this->setupApplication();
-        $this->setupServiceProvider($app);
-
-        // Mount facades
-        AliyunOss::setFacadeApplication($app);
-
-        // Get an instance of a oss client via the facade.
-
-        $client = AliyunOss::listBuckets();
-        $this->assertInstanceOf('OSS\OssClient', $client);
-    }
-*/
 //    public function testRegisterAliyunsOssServiceProviderWithPackageConfigAndEnv()
 //    {
 //        $app = $this->setupApplication();
