@@ -44,7 +44,7 @@ class AliyunOssServiceProvider extends ServiceProvider
         $this->app->singleton('aliyun-oss', function ($app) {
             $config = $app->make('config')->get('aliyun-oss');
 
-            return new OssClient('1', '2', '3');
+            return new OssClient($config['id'],  $config['key'], $config['endpoint']);
         });
 
         $this->app->alias('aliyun-oss', 'OSS\OssClient');

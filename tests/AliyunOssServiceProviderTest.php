@@ -6,23 +6,18 @@ use Illuminate\Container\Container;
 
 abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
-//    public function testRegisterAliyunsOssServiceProviderWithPackageConfigAndEnv()
-//    {
-//        $app = $this->setupApplication();
-//        $this->setupServiceProvider($app);
+    public function testRegisterAliyunsOssServiceProviderWithPackageConfigAndEnv()
+    {
+       $app = $this->setupApplication();
+       $this->setupServiceProvider($app);
 
-        // Get an instance of a oss client.
-        /** @var $oss \Oss\OssClient */
-//        $oss = $app['aliyun-oss']->listBuckets();
- //       $this->assertInstanceOf('OSS\OssClient', $oss);
+       $content = "abcd"; 
+       $bucket = getenv('OSS_TEST_BUCKET');
+       $app['aliyun-oss']->putObject($bucket, '1.txt', $content);
+       $result = $app['aliyun-oss']->getObject($bucket, '1.txt');
+       $this->assertEquals($result, $content);
+  }
 
-        // Verify that the client received the credentials from the package config.
-/*        $credentials = $oss->getOssClient();
-        $this->assertEquals('foo', $credentials->getAccessKeyId());
-        $this->assertEquals('bar', $credentials->getSecretKey());
-        $this->assertEquals('baz', $oss->getRegion());
-    }
-*/
     public function testServiceNameIsProvided()
     {
         $app = $this->setupApplication();
@@ -36,10 +31,10 @@ abstract class AliyunOssServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->setupServiceProvider($app);
         $config = $app['config']->get('aliyun-oss');
 
-        $this->assertEquals('oss', $config['id']);
-        $this->assertEquals('xxx', $config['key']);
-        $this->assertEquals('oss-hangzhou', $config['endpoint']);
-        $this->assertEquals('oss-bucket', $config['bucket']);
+        $this->assertEquals(getenv('OSS_TEST_ACCESS_KEY_ID'), $config['id']);
+        $this->assertEquals(getenv('OSS_TEST_ACCESS_KEY_SECRET'), $config['key']);
+        $this->assertEquals(getenv('OSS_TEST_ENDPOINT'), $config['endpoint']);
+        $this->assertEquals(getenv('OSS_TEST_BUCKET'), $config['bucket']);
     }
 
     /**

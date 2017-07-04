@@ -19,12 +19,6 @@
         </testsuite>
     </testsuites>
 
-    <php>
-        <env name="AWS_ACCESS_KEY_ID" value="foo"/>
-        <env name="AWS_SECRET_ACCESS_KEY" value="bar"/>
-        <env name="AWS_REGION" value="baz"/>
-    </php>
-
     <filter>
         <whitelist>
             <directory>./src/</directory>
