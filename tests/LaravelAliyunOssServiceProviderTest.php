@@ -3,7 +3,7 @@
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
 
-class LaravelAwsServiceProviderTest extends AwsServiceProviderTest
+class LaravelAliyunOssServiceProviderTest extends AliyunOssServiceProviderTest
 {
     public function setUp()
     {
