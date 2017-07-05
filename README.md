@@ -25,6 +25,14 @@ php vendor/bin/phpunit
 
 ## Usage For laravel
 ```
+修改vendor/aliyun-oss/aliyun-oss-php-sdk-laravel/config/config.php
+return [
+    'id' => 'your id',
+    'key' => 'your key',
+    'endpoint' => 'your endpoint',
+    'bucket' => 'your bucket'
+];
+
 修改 config/app.php 并且register aliyunoss Service Provider.
 
     'providers' => array(
@@ -44,8 +52,8 @@ php vendor/bin/phpunit
 Route::get('/', function()
 {
     $client = App::make('aliyun-oss');
-    $client->putObject("moyue-hz", "1.txt", "abcd");
-    $result = $client->getObject("moyue-hz", "1.txt");
+    $client->putObject("your bucket", "your object", "content you want to upload");
+    $result = $client->getObject("your bucket", "your boject");
     echo $result;
 });
 ```
