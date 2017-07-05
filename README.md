@@ -22,7 +22,8 @@ export OSS_TEST_BUCKET=''
 php vendor/bin/phpunit
 ```
 
-## For laravel
+
+## Usage For laravel
 ```
 修改 config/app.php 并且register aliyunoss Service Provider.
 
@@ -31,11 +32,24 @@ php vendor/bin/phpunit
         AliyunOss\Laravel\AliyunOssServiceProvider::class,
     )
 
-Find the aliases key in your config/app.php and add the AWS facade alias.
+在config/app.php 增加aliases.
 
     'aliases' => array(
         // ...
-        'AWS' => Aws\Laravel\AwsFacade::class,
+        'OSS' => AliyunOss\Laravel\AliyunOssFacade::class,
     )
+
+修改routes/web.php为
+
+Route::get('/', function()
+{
+    $client = App::make('aliyun-oss');
+    $client->putObject("moyue-hz", "1.txt", "abcd");
+    $result = $client->getObject("moyue-hz", "1.txt");
+    echo $result;
+});
 ```
+
+
+
 
