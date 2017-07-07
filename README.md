@@ -4,8 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/RobertYue19900425/aliyun-oss-sdk-php-laravel/badge.svg?branch=master)](https://coveralls.io/github/RobertYue19900425/aliyun-oss-sdk-php-laravel?branch=master)
 
 ## laravel项目中引用该包
-1. 安装laravel, 新建laravel工程
 ```
+1. 安装laravel/lumen并新建laravel/lumen工程
 2. 在工程的composer.json中添加
 {
     "require": {
@@ -28,8 +28,7 @@ export OSS_TEST_BUCKET=''
 php vendor/bin/phpunit
 ```
 
-
-## Usage For laravel
+##  laravel工程
 ```
 1. 修改vendor/aliyun-oss/aliyun-oss-php-sdk-laravel/config/config.php
 return [
@@ -62,8 +61,9 @@ Route::get('/', function()
     $result = $client->getObject("your bucket", "your boject");
     echo $result;
 });
+```
 
-## Usage For lumen
+## lumen工程
 ```
 1. 修改vendor/aliyun-oss/aliyun-oss-php-sdk-laravel/config/config.php
 return [
