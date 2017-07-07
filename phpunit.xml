@@ -23,5 +23,6 @@
         <whitelist>
             <directory>./src/</directory>
         </whitelist>
+        <exclude>./src/AliyunOssFacade.php</exclude>
     </filter>
 </phpunit>

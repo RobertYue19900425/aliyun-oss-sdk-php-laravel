@@ -3,15 +3,16 @@
 [![Build Status](https://travis-ci.org/RobertYue19900425/aliyun-oss-sdk-php-laravel.svg?branch=master)](https://travis-ci.org/RobertYue19900425/aliyun-oss-sdk-php-laravel)
 [![Coverage Status](https://coveralls.io/repos/github/RobertYue19900425/aliyun-oss-sdk-php-laravel/badge.svg?branch=master)](https://coveralls.io/github/RobertYue19900425/aliyun-oss-sdk-php-laravel?branch=master)
 
-## 安装laravel
+## laravel项目中引用该包
+1. 安装laravel, 新建laravel工程
 ```
-1. 首先在composer.json中添加
+2. 在工程的composer.json中添加
 {
     "require": {
         "aliyun-oss/aliyun-oss-php-sdk-laravel": "dev-master"
     }
 }
-2. 然后执行
+3. 然后执行
 composer update
 ```
 
@@ -58,6 +59,28 @@ Route::get('/', function()
 {
     $client = App::make('aliyun-oss');
     $client->putObject("your bucket", "your object", "content you want to upload");
+    $result = $client->getObject("your bucket", "your boject");
+    echo $result;
+});
+
+## Usage For lumen
+```
+1. 修改vendor/aliyun-oss/aliyun-oss-php-sdk-laravel/config/config.php
+return [
+    'id' => 'your id',
+    'key' => 'your key',
+    'endpoint' => 'your endpoint',
+    'bucket' => 'your bucket'
+];
+
+2. 在bootstrap/app.php 中注册aliyun-oss Service Providers,
+    $app->register(AliyunOss\Laravel\AliyunOssServiceProvider::class);
+
+3. 修改routes/web.php为
+
+$app->get('/', function () use ($app) {
+    $client = $app->make('aliyun-oss');
+    $client->putObject('your bucket', 'your key',  "content you want to upload");
     $result = $client->getObject("your bucket", "your boject");
     echo $result;
 });
