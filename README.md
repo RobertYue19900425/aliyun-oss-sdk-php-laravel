@@ -8,23 +8,11 @@
 2. 在工程的composer.json中添加
 {
     "require": {
-        "aliyun-oss/aliyun-oss-php-sdk-laravel": "dev-master"
+        "aliyun/aliyun-oss-php-sdk-laravel": "~1.0"
     }
 }
 3. 然后执行
 composer update
-```
-
-## 运行test case
-```
-1. 首先设置环境变量
-export OSS_TEST_ENDPOINT=''                 
-export OSS_TEST_ACCESS_KEY_ID=''              
-export OSS_TEST_ACCESS_KEY_SECRET=''
-export OSS_TEST_BUCKET=''
-
-2. 进入目录,执行
-php vendor/bin/phpunit
 ```
 
 ##  laravel工程
@@ -83,4 +71,15 @@ $app->get('/', function () use ($app) {
     $result = $client->getObject("your bucket", "your boject");
     echo $result;
 });
+```
+
+## 运行test case
+```
+1. 首先设置环境变量
+export OSS_TEST_ENDPOINT=''                 
+export OSS_TEST_ACCESS_KEY_ID=''              
+export OSS_TEST_ACCESS_KEY_SECRET=''
+export OSS_TEST_BUCKET=''
+2. 进入目录,执行
+php vendor/bin/phpunit
 ```

@@ -1,14 +1,14 @@
 {
-    "name": "aliyun-oss/aliyun-oss-php-sdk-laravel",
+    "name": "aliyun/aliyun-oss-php-sdk-laravel",
     "homepage": "https://github.com/aliyun",
-    "description": "A simple Laravel 5 service provider for including the Oss PHP SDK for PHP.",
-    "keywords": ["laravel", "laravel 5", "aliyun", "alicloud", "sdk", "oss"],
+    "description": "A simple Laravel 5 and lumen service provider for including the Oss PHP SDK for PHP.",
+    "keywords": ["laravel 5", "lumen", "aliyun", "alicloud", "sdk", "oss"],
     "type":"library",
     "license":"MIT",
     "authors":[
         {
             "name":"RobertYue19900425",
-            "homepage":"http://aliyun.com"
+            "homepage":"https://github.com/aliyun"
         }
     ],
     "require": {
